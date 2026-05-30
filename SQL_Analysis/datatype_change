@@ -1,0 +1,121 @@
+
+
+--==================================================================
+-- ## Sales Datatype Change
+--==================================================================
+-- Check the whole table
+select *
+from orders;
+
+-- Add ne column with datatype
+ALTER TABLE orders ADD Sales_New FLOAT;
+UPDATE orders SET Sales_New = TRY_CAST(Sales AS FLOAT);
+
+-- Data Transfer
+SELECT
+    SUM(CASE WHEN Sales_New IS NULL THEN 1 ELSE 0 END)         
+    AS Sales_Nulls
+From orders;
+
+-- Check the data type
+SELECT COLUMN_NAME, DATA_TYPE 
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_NAME = 'orders';
+GO
+
+-- Replace the unnecessary symbols
+UPDATE orders
+SET Sales_New = TRY_CAST(
+    LTRIM(RTRIM(
+        REPLACE(REPLACE(REPLACE(Sales, '?', ''), ',', ''), ' ', '')
+    )) AS FLOAT
+);
+GO
+
+SELECT
+    SUM(CASE WHEN Sales_New IS NULL THEN 1 ELSE 0 END)  AS Sales_Nulls
+    from orders;
+
+-- Drop the previous column
+ALTER TABLE orders DROP COLUMN Sales;
+
+-- change the Name of new column
+EXEC sp_rename 'orders.Sales_New',  'Sales',  'COLUMN';
+
+-- Checking the new column
+SELECT TOP 5 Sales FROM orders;
+
+--==================================================================
+-- ## Profit Datatype Change
+--==================================================================
+
+-- Add new column with datatype
+ALTER TABLE orders ADD Profit_New FLOAT;
+UPDATE orders SET Profit_New = TRY_CAST(Profit AS FLOAT);
+
+-- Data Transfer
+SELECT
+    SUM(CASE WHEN Profit_New IS NULL THEN 1 ELSE 0 END)         
+    AS Profit_Nulls
+From orders;
+
+-- Check the data type
+SELECT COLUMN_NAME, DATA_TYPE 
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_NAME = 'orders';
+GO
+
+-- Replace the unnecessary symbols
+UPDATE orders
+SET Profit_New = TRY_CAST(
+    LTRIM(RTRIM(
+        REPLACE(REPLACE(REPLACE(Profit, '?', ''), ',', ''), ' ', '')
+    )) AS FLOAT
+);
+GO
+
+SELECT
+    SUM(CASE WHEN Profit_New IS NULL THEN 1 ELSE 0 END)  AS Profit_Nulls
+    from orders;
+
+-- Drop the previous column
+ALTER TABLE orders DROP COLUMN Profit;
+
+-- change the Name of new column
+EXEC sp_rename 'orders.Profit_New',  'Profit',  'COLUMN';
+
+-- Checking the new column
+SELECT TOP 5 Profit FROM orders;
+
+
+--==================================================================
+-- ## Profit_Margin Datatype Change
+--==================================================================
+
+-- Add new column with datatype
+ALTER TABLE orders ADD Profit_Margin_New FLOAT;
+GO
+
+-- Replace the unnecessary symbols
+UPDATE orders
+SET Profit_Margin_New = TRY_CAST(
+    LTRIM(RTRIM(
+        REPLACE(REPLACE(REPLACE(Profit_Margin, '?', ''), ',', ''), ' ', '')
+    )) AS FLOAT
+);
+GO
+
+
+-- Remove the null values
+SELECT 
+    SUM(CASE WHEN Profit_Margin_New IS NULL THEN 1 ELSE 0 END) AS Margin_Nulls
+FROM orders;
+GO
+
+-- Drop the previous column
+ALTER TABLE orders DROP COLUMN Profit_Margin;
+GO
+
+-- change the Name of new column
+EXEC sp_rename 'orders.Profit_Margin_New', 'Profit_Margin', 'COLUMN';
+GO
