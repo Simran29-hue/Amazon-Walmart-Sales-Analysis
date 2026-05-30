@@ -88,14 +88,13 @@ from messy raw data to a clean interactive dashboard.
 ## Dashboard Preview
 
 ### Page 1 — Sales Overview
-![Page1](PowerBI_Dashboard/Page1_Sales Overview.png)
+![Page1](PowerBI_Dashboard/Page1_Sales_Overview.png)
 
 ### Page 2 — Product Analysis
-![Page2](PowerBI_Dashboard/Page2_Product Analysis.png)
+![Page2](PowerBI_Dashboard/Page2_Product_Analysis.png)
 
 ### Page 3 — Delivery & Customer Analysis
-![Page3](PowerBI_Dashboard/Page3_Delivery & Customer Analysis.png)
-
+![Page3](PowerBI_Dashboard/Page3_Delivery_Customer_Analysis.png)
 ---
 
 ## Repository Structure
