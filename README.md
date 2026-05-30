@@ -142,5 +142,5 @@ Amazon-Walmart-Sales-Analysis/
 - Skills: Excel · SQL · Power BI
 - Looking for: Entry-level Data Analyst roles
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](www.linkedin.com/in/simran-kumari-singh-029n02y)
-[![Gmail](https://img.shields.io/badge/Gmail-Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:umanshi29@gmail.com)
+- LinkedIn: www.linkedin.com/in/simran-kumari-singh-029n02y
+- Gmail: umanshi29@gmail.com
